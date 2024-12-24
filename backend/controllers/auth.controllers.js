@@ -2,6 +2,7 @@ const User = require("../models/user.models");
 const bcryptjs = require("bcryptjs");
 const generateTokenAndSetCookie = require("../utils/generateToken");
 
+//signup
 async function signup(req, res) {
   try {
     const { email, password, username } = req.body;
@@ -67,10 +68,40 @@ async function signup(req, res) {
   }
 }
 
+//login
 async function login(req, res) {
-  res.send("login page");
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ success: false, message: "All fields are required" });
+    }
+
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Invalid credentials" });
+    }
+
+    const isPasswordValid = await bcryptjs.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Invalid credentials" });
+    }
+    generateTokenAndSetCookie(user._id, res);
+    res
+      .status(200)
+      .json({ success: true, message: "User logged in successfully" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
 }
 
+//logout
 async function logout(req, res) {
   try {
     res.clearCookie("jwt-ZenG");
