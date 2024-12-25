@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const authRoutes = require("./routes/auth.routes");
 const movieRoutes = require("./routes/movie.routes");
 const tvRoutes = require("./routes/tv.routes");
+const searchRoutes=require("./routes/search.routes")
 
 const ENV_VAR = require("./config/envVar");
 const { connectDB } = require("./config/db");
@@ -20,7 +21,8 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/movie",middleRoute, movieRoutes);
-app.use("/api/v1/movie",middleRoute,tvRoutes);
+app.use("/api/v1/tv",middleRoute,tvRoutes);
+app.use("/api/v1/search",middleRoute,searchRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
