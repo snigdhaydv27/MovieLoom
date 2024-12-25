@@ -1,11 +1,10 @@
-import React from 'react';
+// import { useAuthStore } from "../../store/authUser";
+import AuthScreen from "./AuthScreen";
+import HomeScreen from "./homeAfterLogin";
 
-const homePage = () => {
-  return (
-    <div className='hero-bg h-screen'>
-      HomePage
-    </div>
-  )
-}
+const HomePage = () => {
+	const user  = false;
 
-export default homePage
+	return <>{user ? <HomeScreen /> : <AuthScreen />}</>;
+};
+export default HomePage;

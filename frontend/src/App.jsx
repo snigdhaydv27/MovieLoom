@@ -3,9 +3,6 @@ import { Navigate } from 'react-router-dom';
 import HomePage from './pages/home/homePage';
 import LoginPage from './pages/loginPage.jsx';
 import SignupPage from './pages/signupPage';
-// import SearchPage from './pages/searchPage';
-// import SearchHistoryPage from './pages/searchHistoryPage';
-// import NotFoundPage from './pages/notFoundPage';
 
 
 
