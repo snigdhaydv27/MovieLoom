@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 
-export const useAuthStore = create((set) => ({
+ const useAuthStore = create((set) => ({
 	user: null,
 	isSigningUp: false,
 	isCheckingAuth: true,
@@ -43,7 +43,7 @@ export const useAuthStore = create((set) => ({
 	authCheck: async () => {
 		set({ isCheckingAuth: true });
 		try {
-			const response = await axios.get("/api/v1/auth/authCheck");
+			const response = await axios.get("/api/v1/auth/authCheck");	
 
 			set({ user: response.data.user, isCheckingAuth: false });
 		} catch (error) {
@@ -51,3 +51,5 @@ export const useAuthStore = create((set) => ({
 		}
 	},
 }));
+
+export default useAuthStore;

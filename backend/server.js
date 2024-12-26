@@ -1,32 +1,38 @@
-const express = require("express");
-const dotenv = require("dotenv");
+import express from "express";
+import cookieParser from "cookie-parser";
+import path from "path";
 
-const authRoutes = require("./routes/auth.routes");
-const movieRoutes = require("./routes/movie.routes");
-const tvRoutes = require("./routes/tv.routes");
-const searchRoutes=require("./routes/search.routes")
+import authRoutes from "./routes/auth.routes.js";
+import movieRoutes from "./routes/movie.routes.js";
+import tvRoutes from "./routes/tv.routes.js";
+import searchRoutes from "./routes/search.routes.js";
 
-const ENV_VAR = require("./config/envVar");
-const { connectDB } = require("./config/db");
-const cookieParser = require("cookie-parser");
+import { ENV_VARS } from "./config/envVars.js";
+import { connectDB } from "./config/db.js";
+import { protectRoute } from "./middleware/protectRoute.js";
 
-const middleRoute = require("./middleware/middleRoute");
-
-dotenv.config();
 const app = express();
-const PORT = ENV_VAR.PORT;
 
-app.use(express.json());
+const PORT = ENV_VARS.PORT;
+const __dirname = path.resolve();
+
+app.use(express.json()); // will allow us to parse req.body
 app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/movie",middleRoute, movieRoutes);
-app.use("/api/v1/tv",middleRoute,tvRoutes);
-app.use("/api/v1/search",middleRoute,searchRoutes);
+app.use("/api/v1/movie", protectRoute, movieRoutes);
+app.use("/api/v1/tv", protectRoute, tvRoutes);
+app.use("/api/v1/search", protectRoute, searchRoutes);
 
-app.listen(PORT,'0.0.0.0', () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-  connectDB();
+if (ENV_VARS.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+	});
+}
+
+app.listen(PORT, () => {
+	console.log("Server started at http://localhost:" + PORT);
+	connectDB();
 });
-
-

@@ -1,20 +1,15 @@
-const jwt = require('jsonwebtoken');
-const ENV_VAR = require('../config/envVar');
+import jwt from "jsonwebtoken";
+import { ENV_VARS } from "../config/envVars.js";
 
-const generateTokenAndSetCookie = (userId,res) => {
-    const token = jwt.sign({userId},ENV_VAR.JWT_SECRET,{
-        expiresIn: '12d'
-    });
-    const options = {
-        expires: new Date(
-            Date.now() + 30 * 24 * 60 * 60 * 1000
-        ),
-        httpOnly: true, //prevent javascript from accessing the cookie
-        sameSite: "strict", // cookie will only be sent in a first-party context
-        secure: ENV_VAR.NODE_ENV !== "development",
-    }
-    res.cookie('jwt-ZenG',token,options);
-    return token;
-}
+export const generateTokenAndSetCookie = (userId, res) => {
+	const token = jwt.sign({ userId }, ENV_VARS.JWT_SECRET, { expiresIn: "15d" });
 
-module.exports= generateTokenAndSetCookie;
+	res.cookie("jwt-netflix", token, {
+		maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days in MS
+		httpOnly: true, // prevent XSS attacks cross-site scripting attacks, make it not be accessed by JS
+		sameSite: "strict", // CSRF attacks cross-site request forgery attacks
+		secure: ENV_VARS.NODE_ENV !== "development",
+	});
+
+	return token;
+};
