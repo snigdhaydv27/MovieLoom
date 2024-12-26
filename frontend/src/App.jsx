@@ -4,7 +4,7 @@ import LoginPage from "./pages/loginPage";
 import SignUpPage from "./pages/signUpPage";
 import Footer from "./components/footer";
 import { Toaster } from "react-hot-toast";
-import { useAuthStore } from "./stores/authUser";
+import  useAuthStore  from "./stores/authUser.js";
 import { useEffect } from "react";
 import { Loader } from "lucide-react";
 
