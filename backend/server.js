@@ -24,7 +24,7 @@ app.use("/api/v1/movie",middleRoute, movieRoutes);
 app.use("/api/v1/tv",middleRoute,tvRoutes);
 app.use("/api/v1/search",middleRoute,searchRoutes);
 
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   connectDB();
 });

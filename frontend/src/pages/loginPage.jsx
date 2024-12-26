@@ -1,15 +1,18 @@
 import React from 'react'
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuthStore } from "../stores/authUser";
 
 const loginPage = () => {
-const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-		console.log({ email, password });
-  };
+	const { login, isLoggingIn } = useAuthStore();
+
+	const handleLogin = (e) => {
+		e.preventDefault();
+		login({ email, password });
+	};
   return (
     <div className='h-screen w-full hero-bg'>
       <header className='max-w-6xl mx-auto flex items-center justify-between p-4'>
@@ -54,9 +57,10 @@ const [email, setEmail] = useState("");
               className='w-full py-2 bg-myColor-500 text-white font-semibold rounded-md
               hover:bg-myColor-600
             '
-            >
-              Login
-            </button>
+            disabled={isLoggingIn}
+						>
+							{isLoggingIn ? "Loading..." : "Login"}
+						</button>
           </form>
           <div className='text-center text-gray-400'>
             Don't have an account?{" "}
