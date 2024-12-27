@@ -1,70 +1,39 @@
-import React from 'react';
+import React from "react";
+import { Linkedin, Instagram, Github } from "lucide-react";
 
 const Footer = () => {
   return (
-    <>
-      <div className='h-2 w-full bg-myColor-600' aria-hidden='true' />
-      <footer className="bg-black text-white py-8">
-        <div className="text-center">
-          <div className="flex flex-row justify-between gap-8">
-            <div className="w-full sm:w-1/2 lg:w-1/4 mb-8">
-              <h2 className="text-lg font-bold mb-4">About Us</h2>
-              <ul>
-                <li className="mb-2">
-                  <a
-                    role="link"
-                    data-uia="footer-link"
-                    target="_self"
-                    className="hover:underline"
-                    href="/about"
-                  >
-                    About
-                  </a>
-                </li>
-                {/* Add more links as needed */}
-              </ul>
-            </div>
-            <div className="w-full sm:w-1/2 lg:w-1/4 mb-8">
-              <h2 className="text-lg font-bold mb-4">Support</h2>
-              <ul>
-                <li className="mb-2">
-                  <a
-                    role="link"
-                    data-uia="footer-link"
-                    target="_self"
-                    className="hover:underline"
-                    href="/support"
-                  >
-                    Support
-                  </a>
-                </li>
-                {/* Add more links as needed */}
-              </ul>
-            </div>
-            <div className="w-full sm:w-1/2 lg:w-1/4 mb-8">
-              <h2 className="text-lg font-bold mb-4">Contact</h2>
-              <ul>
-                <li className="mb-2">
-                  <a
-                    role="link"
-                    data-uia="footer-link"
-                    target="_self"
-                    className="hover:underline"
-                    href="/contact"
-                  >
-                    Contact
-                  </a>
-                </li>
-                {/* Add more links as needed */}
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 text-center">
-            <p>&copy; {new Date().getFullYear()} ZenG. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-    </>
+    <footer className="bg-black text-white py-8">
+      <div className="flex justify-center gap-8">
+        <a
+          href="https://www.linkedin.com/in/snigdha-kumar-90445b298/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-gray-400"
+        >
+          <Linkedin size={24} />
+        </a>
+        <a
+          href="https://www.instagram.com/snigdha_ydv/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-gray-400"
+        >
+          <Instagram size={24} />
+        </a>
+        <a
+          href="https://github.com/snigdhaydv27"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-gray-400"
+        >
+          <Github size={24} />
+        </a>
+      </div>
+      <div className="mt-8 text-center">
+        <p>&copy; {new Date().getFullYear()} ZenG. All rights reserved.</p>
+      </div>
+    </footer>
   );
 };
 
