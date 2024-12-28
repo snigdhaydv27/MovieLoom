@@ -1,13 +1,18 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import {Menu, Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import useAuthStore from "../stores/authUser";
+import { useContentStore } from "../stores/content";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const { user, logout } = useAuthStore();
   const profileMenuRef = useRef(null);
+
+  // State to track the active link
+  const [activeLink, setActiveLink] = useState("movie"); // Default is movie link
+  const { setContentType } = useContentStore();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -25,6 +30,12 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Function to handle link click
+  const handleLinkClick = (linkType) => {
+    setActiveLink(linkType);  // Set active link state for UI
+    setContentType(linkType); // Set content type for backend data fetch
+  };
+
   return (
     <header className="max-w-6xl mx-auto flex flex-wrap items-center justify-between p-4 h-20">
       <div className="flex items-center gap-10 z-50">
@@ -34,13 +45,25 @@ const Navbar = () => {
 
         {/* Desktop Navbar Items */}
         <div className="hidden sm:flex gap-4 items-center">
-          <Link to="/" className="hover:underline" onClick={() => setContentType("movie")}>
+          <Link
+            to="/"
+            className={`hover:underline ${activeLink === "movie" ? "text-purple-500" : "text-white"}`}
+            onClick={() => handleLinkClick("movie")}
+          >
             Movies
           </Link>
-          <Link to="/" className="hover:underline" onClick={() => setContentType("tv")}>
+          <Link
+            to="/"
+            className={`hover:underline ${activeLink === "tv" ? "text-purple-500" : "text-white"}`}
+            onClick={() => handleLinkClick("tv")}
+          >
             TV Shows
           </Link>
-          <Link to="/history" className="hover:underline">
+          <Link
+            to="/history"
+            className={`hover:underline ${activeLink === "history" ? "text-purple-500" : "text-white"}`}
+            onClick={() => handleLinkClick("history")}
+          >
             Search History
           </Link>
         </div>
@@ -98,13 +121,25 @@ const Navbar = () => {
           </div>
 
           {/* Menu Links */}
-          <Link to="/" className="block hover:underline p-2" onClick={toggleMobileMenu}>
+          <Link
+            to="/"
+            className={`block hover:underline p-2 ${activeLink === "movie" ? "text-purple-500" : "text-white"}`}
+            onClick={() => handleLinkClick("movie")}
+          >
             Movies
           </Link>
-          <Link to="/" className="block hover:underline p-2" onClick={toggleMobileMenu}>
+          <Link
+            to="/"
+            className={`block hover:underline p-2 ${activeLink === "tv" ? "text-purple-500" : "text-white"}`}
+            onClick={() => handleLinkClick("tv")}
+          >
             TV Shows
           </Link>
-          <Link to="/history" className="block hover:underline p-2" onClick={toggleMobileMenu}>
+          <Link
+            to="/history"
+            className={`block hover:underline p-2 ${activeLink === "history" ? "text-purple-500" : "text-white"}`}
+            onClick={() => handleLinkClick("history")}
+          >
             Search History
           </Link>
 
