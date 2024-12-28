@@ -1,4 +1,4 @@
-const WatchPageSkeleton = () => {
+const WatchPageOuter = () => {
 	return (
 		<div className='animate-pulse'>
 			<div className='bg-gray-700 rounded-md w-40 h-6 mb-4 shimmer'></div>
@@ -9,4 +9,4 @@ const WatchPageSkeleton = () => {
 		</div>
 	);
 };
-export default WatchPageSkeleton;
+export default WatchPageOuter;

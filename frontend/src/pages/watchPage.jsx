@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import ReactPlayer from "react-player";
 import { ORIGINAL_IMG_BASE_URL, SMALL_IMG_BASE_URL } from "../utils/constants";
 import { formatReleaseDate } from "../utils/dateFunction";
-import WatchPageSkeleton from "../components/watchPageSkeleton";
+import WatchPageOuter from  "../components/watchPageOuter";
 
 const WatchPage = () => {
 	const { id } = useParams();
@@ -84,7 +84,7 @@ const WatchPage = () => {
 	if (loading)
 		return (
 			<div className='min-h-screen bg-black p-10'>
-				<WatchPageSkeleton />
+				<WatchPageOuter/>
 			</div>
 		);
 
