@@ -51,7 +51,7 @@ const AuthScreen = () => {
 					<div className='flex-1 text-center md:text-left'>
 						<h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Enjoy on your TV</h2>
 						<p className='text-lg md:text-xl'>
-							Watch on Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.
+							Watch on Smart TVs, Apple TV, and more.
 						</p>
 					</div>
 					{/* right side */}
@@ -102,10 +102,10 @@ const AuthScreen = () => {
 
 					<div className='flex-1 md:text-left text-center'>
 						<h2 className='text-4xl md:text-5xl font-extrabold mb-4 text-balance'>
-							Download your shows to watch offline
+							Watch your favorites tv shows
 						</h2>
 						<p className='text-lg md:text-xl'>
-							Save your favorites easily and always have something to watch.
+							Search your favorites shows easily.
 						</p>
 					</div>
 				</div>
@@ -156,8 +156,7 @@ const AuthScreen = () => {
     <div className='flex-1 text-center md:text-left'>
       <h2 className='text-4xl md:text-5xl font-extrabold mb-4'>Create profiles for kids</h2>
       <p className='text-lg md:text-xl'>
-        Send kids on adventures with their favorite characters in a space made just for them—free
-        with your membership.
+        Send kids on adventures with their favorite characters.
       </p>
     </div>
   </div>
