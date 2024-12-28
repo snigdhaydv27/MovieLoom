@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { Loader } from "lucide-react";
 import SearchPage from "./pages/searchPage";
 import SearchHistoryPage from "./pages/searchHistory";
+import NotFoundPage from "./pages/notFoundPage";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 				<Route path='/watch/:id' element={user ? <WatchPage /> : <Navigate to={"/login"} />} />
         <Route path='/search' element={user ? <SearchPage /> : <Navigate to={"/login"} />} />
         <Route path='/history' element={user ? <SearchHistoryPage /> : <Navigate to={"/login"} />} />
+        <Route path='/*' element={<NotFoundPage />} />
 			</Routes>
       <Footer />
       <Toaster />
