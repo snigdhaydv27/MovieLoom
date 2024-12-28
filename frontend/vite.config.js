@@ -12,7 +12,8 @@ export default defineConfig({
 		},
 	},
 	resolve: {
-		extensions: ['.js', '.jsx', '.ts', '.tsx']
-	  }
-	  
+		alias: {
+		  '@': '/src', // Ensure this doesn't conflict
+		},
+	 },	    
 });
