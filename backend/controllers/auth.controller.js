@@ -98,7 +98,12 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
 	try {
-		res.clearCookie("jwt-netflix");
+		res.clearCookie("jwt-netflix", {
+			httpOnly: true,
+			sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
+			secure: process.env.NODE_ENV === "production",
+			path: '/',
+		});
 		res.status(200).json({ success: true, message: "Logged out successfully" });
 	} catch (error) {
 		console.log("Error in logout controller", error.message);

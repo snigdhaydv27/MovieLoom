@@ -24,6 +24,7 @@ app.use(cors({
 			'http://localhost:5173',
 			'http://localhost:3000',
 			'https://movie-loom-five.vercel.app',
+			'https://zeng-five.vercel.app',
 			ENV_VARS.FRONTEND_URL
 		].filter(Boolean);
 		
