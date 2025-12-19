@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
+import cors from "cors";
 
 import authRoutes from "./routes/auth.routes.js";
 import movieRoutes from "./routes/movie.routes.js";
@@ -15,6 +16,25 @@ const app = express();
 
 const PORT = ENV_VARS.PORT;
 const __dirname = path.resolve();
+
+// CORS configuration
+app.use(cors({
+	origin: function(origin, callback) {
+		const allowedOrigins = [
+			'http://localhost:5173',
+			'http://localhost:3000',
+			'https://movie-loom-five.vercel.app',
+			ENV_VARS.FRONTEND_URL
+		].filter(Boolean);
+		
+		if (!origin || allowedOrigins.includes(origin)) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	},
+	credentials: true
+}));
 
 app.use(express.json()); // will allow us to parse req.body
 app.use(cookieParser());
