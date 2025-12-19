@@ -6,13 +6,17 @@ import {
 	getSimilarMovies,
 	getTrendingMovie,
 } from "../controllers/movie.controller.js";
+import { protectRoute } from "../middleware/protectRoute.js";
 
 const router = express.Router();
 
+// Public routes - anyone can browse
 router.get("/trending", getTrendingMovie);
-router.get("/:id/trailers", getMovieTrailers);
-router.get("/:id/details", getMovieDetails);
-router.get("/:id/similar", getSimilarMovies);
 router.get("/:category", getMoviesByCategory);
+
+// Protected routes - require authentication to view details
+router.get("/:id/trailers", protectRoute, getMovieTrailers);
+router.get("/:id/details", protectRoute, getMovieDetails);
+router.get("/:id/similar", protectRoute, getSimilarMovies);
 
 export default router;

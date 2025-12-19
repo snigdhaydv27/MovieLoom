@@ -40,8 +40,10 @@ app.use(express.json()); // will allow us to parse req.body
 app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/movie", protectRoute, movieRoutes);
-app.use("/api/v1/tv", protectRoute, tvRoutes);
+// Public routes - no authentication required for browsing
+app.use("/api/v1/movie", movieRoutes);
+app.use("/api/v1/tv", tvRoutes);
+// Protected routes - require authentication
 app.use("/api/v1/search", protectRoute, searchRoutes);
 
 if (ENV_VARS.NODE_ENV === "production") {
