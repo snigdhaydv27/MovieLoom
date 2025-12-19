@@ -12,7 +12,6 @@
   "dependencies": {
     "axios": "^1.7.9",
     "lucide-react": "^0.469.0",
-    "movieloom": "file:..",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.1",

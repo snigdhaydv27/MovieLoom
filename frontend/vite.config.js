@@ -8,12 +8,17 @@ export default defineConfig({
 		proxy: {
 			"/api": {
 				target: "http://localhost:5000",
+				changeOrigin: true,
 			},
 		},
 	},
+	build: {
+		outDir: "dist",
+		sourcemap: false,
+	},
 	resolve: {
 		alias: {
-		  '@': '/src', // Ensure this doesn't conflict
+		  '@': '/src',
 		},
 	 },	    
 });
