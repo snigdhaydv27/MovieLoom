@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home/homePage";
 import LoginPage from "./pages/loginPage";
-import SignUpPage from "./pages/signUpPage";
-import WatchPage from "./pages/watchPage.jsx";
+import SignUpPage from "./pages/signupPage";
+import WatchPage from "./pages/watchPage";
 import Footer from "./components/footer";
 import { Toaster } from "react-hot-toast";
 import  useAuthStore  from "./stores/authUser.js";
